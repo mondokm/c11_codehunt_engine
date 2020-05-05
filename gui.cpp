@@ -16,17 +16,18 @@ int main( int argc, char **argv )
     task1->add([](std::function<int(int,int)> f){return f(2,4)==6;});
     task1->add(22,20,2);
 
-    auto task2=std::make_shared<task<int(int,int)>>("Write a function that subtracts b from a!","int sub(int a, int b)","sub");
-    task2->add([](std::function<int(int,int)> f){return f(2,4)==-2;});
-    task2->add(18,20,2);
+    auto task2=std::make_shared<task<bool(std::string)>>("Write a function that decides whether a string is a palindrome!","bool palindrome(std::string str)","palindrome",std::initializer_list<std::string>{"string"});
+    task2->add([](std::function<bool(std::string)> f){return f("asd")==false;});    
+    task2->add(true,"racecar");
+    task2->add(true,"gezakekazeg");
 
-    auto task3=std::make_shared<task<double(double,double)>>("Write a function that sums two floating point numbers!","double sum(double a, double b)","sum");
-    task3->add([](std::function<double(double,double)> f){return f(2.0,4.0)==6.0;});    
-    task3->add(22.0,20.0,2.0);
+    auto task3=std::make_shared<task<int(int,int)>>("Write a function that subtracts b from a!","int sub(int a, int b)","sub");
+    task3->add([](std::function<int(int,int)> f){return f(2,4)==-2;});
+    task3->add(18,20,2);
 
-    auto task4=std::make_shared<task<bool(std::string)>>("Write a function that decides whether a string is a palindrome!","bool palindrome(std::string str)","palindrome",std::initializer_list<std::string>{"string","vector"});
-    task4->add([](std::function<bool(std::string)> f){return f("asd")==false;});    
-    task4->add(true,"racecar");
+    auto task4=std::make_shared<task<double(double,double)>>("Write a function that sums two floating point numbers!","double sum(double a, double b)","sum");
+    task4->add([](std::function<double(double,double)> f){return f(2.0,4.0)==6.0;});    
+    task4->add(22.0,20.0,2.0);
 
     tasks.push_back(task1);
     tasks.push_back(task2);
