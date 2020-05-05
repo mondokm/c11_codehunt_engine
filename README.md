@@ -2,8 +2,8 @@
 
 ## Requirements
 
--Linux based system
--qt5
+- Linux based system
+- qt5
 
 ## Build instructions
 
@@ -16,11 +16,11 @@ make
 ## The structure of the code
 
 The following files belong to the engine:
--task
--dynamic_library
--library_util
+- task
+- dynamic_library
+- library_util
 
 The following files belong to the graphical user interface:
--code_field
--codehunt_widget
--gui
+- code_field
+- codehunt_widget
+- gui
