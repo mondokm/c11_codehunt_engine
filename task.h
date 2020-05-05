@@ -28,14 +28,14 @@ class task<RET(ARGS...)>: public task_interface{
     std::vector<std::string> _includes;
     std::vector<std::function<bool(std::function<RET(ARGS...)>)>> testcases;
 public:
-    task(std::string desc, std::string header, std::string name, std::initializer_list<std::string> includes={}):_desc{desc}, _header{header}, _name{name}, _includes{includes}{}
+    task(std::string desc, std::string header, std::string name, std::initializer_list<std::string> includes={}):_desc{std::move(desc)}, _header{std::move(header)}, _name{std::move(name)}, _includes{std::move(includes)}{}
 
     void add(std::function<bool(std::function<RET(ARGS...)>)> f){
-        testcases.push_back(f);
+        testcases.push_back(std::move(f));
     }
 
     void add(RET ret, ARGS ... args){
-        add([=](std::function<RET(ARGS...)> f){return f(args...)==ret;});
+        add([=, ret{std::move(ret)}](std::function<RET(ARGS...)> f){return f(args...)==ret;});
     }
 
     virtual bool test(dynamic_library& lib){
